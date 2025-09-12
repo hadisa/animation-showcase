@@ -23,9 +23,7 @@ export default function LandingPage() {
 
       <Navigation />
       <HeroSection />
-
       <FeaturesSection />
-      {/* <AnimatedHeroBackground /> */}
       <AnimationCategories />
       <CTASection />
       <Footer />
