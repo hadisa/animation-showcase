@@ -1,11 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Copy,
-  Download,
-  Eye,
-  Heart
-} from "lucide-react";
+import { Copy, Download, Eye, Heart } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { BaseAnimationCard } from "./base-animation-card";
@@ -15,48 +10,9 @@ export const AttentionAnimationCard = (props: any) => {
   return (
     <BaseAnimationCard {...props}>
       {/* Custom content for attention animations */}
-      <div className="flex items-center justify-center  relative overflow-hidden">
+      <div className="flex items-center justify-center relative overflow-hidden rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6 min-h-[200px]">
         {props.animation.component &&
-          React.createElement(props.animation.component, {
-          })}
-      </div>
-
-      {/* <OrnateGameCard2 /> */}
-
-      {/* Keep the rest of the content the same */}
-      <div className="bg-gradient-to-r from-muted/50 to-muted/30 rounded-xl p-4 border border-border/50">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-              Tailwind Classes
-            </span>
-            <Badge variant="outline" className="text-xs">
-              CSS
-            </Badge>
-          </div>
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={() =>
-              props.copyToClipboard(props.animation.code, props.animation.id)
-            }
-            className="h-8 px-3 hover:bg-primary/10"
-          >
-            {props.copiedCode === props.animation.id ? (
-              <span className="text-xs text-green-600 font-medium">
-                Copied!
-              </span>
-            ) : (
-              <>
-                <Copy className="w-3 h-3 mr-1" />
-                <span className="text-xs">Copy</span>
-              </>
-            )}
-          </Button>
-        </div>
-        <code className="text-sm font-mono text-foreground break-all bg-background/50 px-3 py-2 rounded-lg block">
-          {props.animation.code}
-        </code>
+          React.createElement(props.animation.component, {})}
       </div>
 
       <div className="flex gap-3">
@@ -65,6 +21,22 @@ export const AttentionAnimationCard = (props: any) => {
             <Eye className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
             View Details
           </Link>
+        </Button>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() =>
+            props.copyToClipboard(props.animation.code, props.animation.id)
+          }
+          className="h-8 px-3 hover:bg-primary/10"
+        >
+          {props.copiedCode === props.animation.id ? (
+            <span className="text-xs text-green-600 font-medium">Copied!</span>
+          ) : (
+            <>
+              <Copy className="w-3 h-3 mr-1" />
+            </>
+          )}
         </Button>
         <Button
           size="sm"

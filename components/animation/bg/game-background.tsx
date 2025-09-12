@@ -16,7 +16,7 @@ const GameBackground: React.FC<GameBackgroundProps> = ({
   }, []);
 
   return (
-    <div className={`relative w-full h-screen overflow-hidden flex items-center justify-center font-['Orbitron'] bg-[#01010a] ${className}`}>
+    <div className={`relative w-[340px] h-[480px] overflow-hidden flex items-center justify-center font-['Orbitron'] bg-[#01010a] ${className}`}>
       
       {/* Background Gradient for Depth */}
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#00051a] via-[#05001a] to-[#0a002a]"></div>
@@ -41,13 +41,6 @@ const GameBackground: React.FC<GameBackgroundProps> = ({
 
       {/* Game Title Animation */}
       <div className="absolute z-20 text-center select-none pointer-events-none">
-        <h1 className="game-title text-white text-7xl font-bold uppercase tracking-widest leading-none">
-          {gameTitle.split('').map((char, index) => (
-            <span key={index} className="inline-block animate-title-char-reveal" style={{ animationDelay: `${0.1 * index}s` }}>
-              {char === ' ' ? '\u00A0' : char} {/* Non-breaking space for actual space */}
-            </span>
-          ))}
-        </h1>
         <p className="game-subtitle text-purple-400 text-lg mt-4 animate-fade-in" style={{ animationDelay: `${0.1 * gameTitle.length + 0.5}s` }}>
           PRESS START TO BEGIN
         </p>

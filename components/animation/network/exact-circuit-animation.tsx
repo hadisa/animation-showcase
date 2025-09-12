@@ -3,7 +3,7 @@ import React from 'react';
 export default function ExactCircuitAnimation() {
   return (
     <>
-      <div className="relative w-full h-[600px] overflow-hidden bg-[#0A101A]">
+      <div className="relative w-[340px] h-[480px] overflow-hidden bg-[#0A101A]">
         
         {/* The Central Glowing Core */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[5px] z-10 animate-core-glow"></div>

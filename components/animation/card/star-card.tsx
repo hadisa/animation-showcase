@@ -87,8 +87,8 @@ interface StarShineCardProps {
   children?: React.ReactNode;
 }
 
-export default function StarBorderCard1({
-  title,
+export default function StarCard({
+  title="Title",
   description,
   className,
   children,
@@ -97,26 +97,21 @@ export default function StarBorderCard1({
     <div className="relative w-[340px] h-[480px] overflow-hidden rounded-xl font-sans bg-black p-[4px] star-shine-container group">
       <div className="star-field absolute inset-0 z-0 opacity-100 transition-opacity duration-500"></div>
 
-      <Card
-        className={cn(
-          "relative w-[340px] h-[480px]  bg-black transition-all duration-300",
-          className
-        )}
-      >
+      <Card className={cn("h-full w-full border-slate-800 bg-transparent", className)}>
         <CardHeader>
           <CardTitle>{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardHeader>
-        <CardContent className="w-full h-full">
-          {children || "Your card content goes here."}
+        <CardContent>
+          {children}
           <img
-            src={"./5.png"}
+            src={"./7.png"}
             alt={title}
-            className="w-full h-full object-contain my-4"
+            className="w-full h-full object-contain"
           />
         </CardContent>
         <CardFooter>
-          <span className="w-full h-full text-sm text-slate-500">
+          <span className="w-full h-full text-sm text-gray-100">
             A card with a star-filled background
           </span>
         </CardFooter>

@@ -39,7 +39,7 @@ const FuturisticAnimatedHeroBackground: React.FC<FuturisticAnimatedHeroBackgroun
   }, []);
 
   return (
-    <div className={`relative w-full h-screen overflow-hidden flex items-center justify-center font-inter ${className}`}>
+    <div className={`relative w-[340px] h-[480px] overflow-hidden flex items-center justify-center font-inter ${className}`}>
       
       {/* Enhanced Background Gradient */}
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-950 via-gray-900 to-indigo-950"></div>

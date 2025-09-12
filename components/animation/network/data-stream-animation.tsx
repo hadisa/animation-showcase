@@ -4,7 +4,7 @@ export default function DataStreamAnimation() {
   return (
     <>
       <div
-        className="relative w-full h-[600px] bg-cover bg-center overflow-hidden font-sans"
+        className="relative w-[340px] h-[480px] bg-cover bg-center overflow-hidden font-sans"
         style={{ backgroundImage: "url('/quantum-server.jpg')" }}
       >
         {/* The Animated Data Stream Layer */}

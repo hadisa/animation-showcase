@@ -69,7 +69,7 @@ export default function HadisaTextAnimation() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full h-[600px] bg-black overflow-hidden">
+    <div ref={containerRef} className="relative w-[340px] h-[480px] bg-black overflow-hidden">
       {dots.map(dot => (
         <div
           key={dot.id}

@@ -77,11 +77,12 @@ export default function AnimatedBorderCard({
                     <CardTitle>{title}</CardTitle>
                     <CardDescription>{description}</CardDescription>
                 </CardHeader>
-                <CardContent>
-                    {children || "Hover for an animated border effect using pure CSS and Tailwind."}
+                <CardContent className='p-0'>
+                    {children}
+                    <img src={"./10.png"} alt={title} className="w-full h-full object-contain" />
                 </CardContent>
                 <CardFooter>
-                    <span className="text-sm text-slate-500">
+                    <span className="text-sm text-gray-100">
                         Hover for an animated border
                     </span>
                 </CardFooter>

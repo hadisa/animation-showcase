@@ -73,7 +73,7 @@ export const AnimationCardRenderer = ({
                         copyToClipboard={copyToClipboard}
                     />
                 )
-            case "transitions":
+            case "bg":
                 return (
                     <TransitionAnimationCard
                         animation={animation}

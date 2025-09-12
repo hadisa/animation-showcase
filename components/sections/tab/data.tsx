@@ -18,10 +18,10 @@ import AnimatedBorderCard1 from "@/components/animation/card/animated-border-car
 import AnimatedCard from "@/components/animation/card/animated-card";
 import FuturisticGameCard from "@/components/animation/card/futuristic-game-card";
 import OrnateGameCard from "@/components/animation/card/ornate-game-card";
-import OrnateGameCard3 from "@/components/animation/card/ornate-game-card-3";
+import OrnateGameCard3 from "@/components/animation/card/shake-card";
 import OrnateGameCard4 from "@/components/animation/card/ornate-game-card4";
 import ShineCard from "@/components/animation/card/shine-card";
-import StarBorderCard1 from "@/components/animation/card/star-border-card1";
+import StarBorderCard1 from "@/components/animation/card/star-card";
 import StarCardBorder from "@/components/animation/card/star-card-border";
 import SuperAnimatedHeroCard from "@/components/animation/card/super-animated-hero-card";
 import {

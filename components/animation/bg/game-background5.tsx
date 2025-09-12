@@ -44,7 +44,7 @@ const GameBackground5 = () => {
   }, []);
 
   return (
-    <div className={`relative w-full h-screen overflow-hidden flex items-center justify-center font-['Orbitron'] bg-[#01010a]`}>
+    <div className={`relative w-[340px] h-[480px]overflow-hidden flex items-center justify-center font-['Orbitron'] bg-[#01010a]`}>
       
       {/* Background Gradient for Depth */}
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#00051a] via-[#05001a] to-[#0a002a]"></div>

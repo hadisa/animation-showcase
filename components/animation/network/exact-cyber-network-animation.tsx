@@ -3,7 +3,7 @@ import React from "react";
 export default function ExactCyberNetworkAnimation() {
   return (
     <>
-      <div className="relative w-full h-[600px] overflow-hidden bg-gradient-to-br from-[#001f3f] to-[#0a4a40]">
+      <div className="relative w-[340px] h-[480px] overflow-hidden bg-gradient-to-br from-[#001f3f] to-[#0a4a40]">
         {/* Central Energy Core / Light Burst */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[100px] z-20 animate-energy-burst"></div>
 

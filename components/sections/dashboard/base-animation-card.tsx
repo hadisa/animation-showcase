@@ -18,7 +18,7 @@ import {
   Eye,
 } from "lucide-react";
 import Link from "next/link";
-import OrnateGameCard3 from "@/components/animation/card/ornate-game-card-3";
+import OrnateGameCard3 from "@/components/animation/card/shake-card";
 import React from "react";
 
 interface BaseAnimationCardProps {

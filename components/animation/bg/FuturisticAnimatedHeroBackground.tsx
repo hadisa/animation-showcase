@@ -138,7 +138,7 @@ const FuturisticAnimatedHeroBackground1: React.FC<FuturisticAnimatedHeroBackgrou
   }, []);
 
   return (
-    <div className={`relative w-full h-screen overflow-hidden flex items-center justify-center font-inter bg-gradient-to-br from-[#000d23] via-[#1a0a2a] to-[#0d021c] ${className}`}>
+    <div className={`relative w-[340px] h-[480px] overflow-hidden flex items-center justify-center font-inter bg-gradient-to-br from-[#000d23] via-[#1a0a2a] to-[#0d021c] ${className}`}>
       
       {/* Animated Glowing Lines */}
       <AnimatedLine 
