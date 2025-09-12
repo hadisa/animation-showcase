@@ -19,7 +19,6 @@ import AnimatedCard from "@/components/animation/card/animated-card";
 import FuturisticGameCard from "@/components/animation/card/futuristic-game-card";
 import OrnateGameCard from "@/components/animation/card/ornate-game-card";
 import OrnateGameCard3 from "@/components/animation/card/shake-card";
-import OrnateGameCard4 from "@/components/animation/card/ornate-game-card4";
 import ShineCard from "@/components/animation/card/shine-card";
 import StarBorderCard1 from "@/components/animation/card/star-card";
 import StarCardBorder from "@/components/animation/card/star-card-border";
@@ -532,14 +531,7 @@ export const animations = [
     category: "Background" as AnimationCategory,
     tags: ["loading", "pro", "modern"],
   },
-  {
-    id: 60,
-    title: "Ornate Game Card 4",
-    description: "Animated hero background for modern interfaces.",
-    component: OrnateGameCard4,
-    category: "UI Elements" as AnimationCategory,
-    tags: ["loading", "pro", "modern"],
-  },
+
   {
     id: 61,
     title: "Super Animated Hero Card",
