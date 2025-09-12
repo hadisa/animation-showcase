@@ -180,7 +180,7 @@ const LoadingSpinner = () => {
   }
 
   return (
-    <div className="w-[340px] h-[480px] flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+    <div className="w-[340px] h-[480px] flex items-center justify-center bg-black dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
       <AdvancedLoadingSpinner onComplete={false} />
     </div>
   );

@@ -11,9 +11,9 @@
   --card-foreground: #374151;
   --popover: rgba(255, 255, 255, 0.9);
   --popover-foreground: #374151;
-  --primary: #d97706;
+  --primary: #115857;
   --primary-foreground: #ffffff;
-  --secondary: #6366f1;
+  --secondary: #0B574E;
   --secondary-foreground: #ffffff;
   --muted: #f8fafc;
   --muted-foreground: #374151;
@@ -25,7 +25,7 @@
   --input: #ffffff;
   --ring: rgba(217, 119, 6, 0.5);
   --chart-1: #d97706;
-  --chart-2: #6366f1;
+  --chart-2: #0B574E;
   --chart-3: #ea580c;
   --chart-4: #f97316;
   --chart-5: #4b5563;
@@ -34,7 +34,7 @@
   --sidebar-foreground: #374151;
   --sidebar-primary: #d97706;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #6366f1;
+  --sidebar-accent: #0B574E;
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #e5e7eb;
   --sidebar-ring: rgba(217, 119, 6, 0.5);
@@ -52,7 +52,7 @@
   --popover-foreground: #f1f5f9;
   --primary: #f59e0b;
   --primary-foreground: #0f172a;
-  --secondary: #8b5cf6;
+  --secondary: #0B574E;
   --secondary-foreground: #ffffff;
   --muted: rgba(30, 41, 59, 0.5);
   --muted-foreground: #94a3b8;
@@ -64,7 +64,7 @@
   --input: rgba(30, 41, 59, 0.8);
   --ring: rgba(245, 158, 11, 0.5);
   --chart-1: #f59e0b;
-  --chart-2: #8b5cf6;
+  --chart-2: #0B574E;
   --chart-3: #f97316;
   --chart-4: #06b6d4;
   --chart-5: #64748b;
@@ -457,7 +457,7 @@
   @media (hover: none) and (pointer: coarse) {
     .hover-glow-premium:active {
       transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 0 20px rgba(217, 119, 6, 0.3);
+      box-shadow: 0 0 20px rgba(18, 73, 76, 0.3);
     }
 
     .group:active .group-hover\:scale-110 {
@@ -572,24 +572,24 @@
   }
 
   .gradient-mesh {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0B574E 0%, #764ba2 100%);
     background-size: 400% 400%;
     animation: gradient-shift 8s ease infinite;
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #d97706, #6366f1);
+    background: linear-gradient(135deg, #d97706, #0B574E);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .hover-glow-premium {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(18, 73, 76, 1);
   }
 
   .hover-glow-premium:hover {
-    box-shadow: 0 0 40px rgba(217, 119, 6, 0.4), 0 0 80px rgba(217, 119, 6, 0.2);
+    box-shadow: 0 0 40px rgba(18, 73, 76, 0.3), 0 0 80px rgba(19, 82, 87, 0.2);
     transform: translateY(-4px) scale(1.02);
   }
 
@@ -680,7 +680,7 @@
   }
 
   .hover-glow:hover {
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 0 20px rgba(19, 82, 87, 0.3);
   }
 
   .hover-scale {

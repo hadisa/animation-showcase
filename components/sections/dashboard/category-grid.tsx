@@ -9,7 +9,7 @@ interface CategoryGridProps {
 }
 
 export const CategoryGrid = ({ animationCategories, setSelectedCategory }: CategoryGridProps) => (
-    <div className="mb-16">
+    <div className="mb-16 ">
         <div className="flex items-center justify-between mb-8">
             <h2 className="font-serif text-3xl font-bold text-foreground">Categories</h2>
             <Badge variant="outline">{animationCategories.length} categories</Badge>
