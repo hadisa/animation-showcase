@@ -85,14 +85,14 @@ export default function DashboardPage() {
           </div>
 
           {/* Category Grid Section */}
-          {selectedCategory === "all" && (
+          {/* {selectedCategory === "all" && (
             <div className="bg-background/50 backdrop-blur-md rounded-2xl p-6 mb-8 transition-all ">
               <CategoryGrid
                 animationCategories={animationCategories}
                 setSelectedCategory={setSelectedCategory}
               />
             </div>
-          )}
+          )} */}
 
           {/* Animations Grid Section */}
           <div className="bg-background/50 backdrop-blur-md rounded-2xl p-6transition-all ">
