@@ -1,77 +1,120 @@
 "use client";
-"use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { animations, AnimationCategory } from "./data";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { animations } from "./data";
 import { cn } from "@/lib/utils";
 import { CodeBlock } from "@/components/code-block";
 import { Copy, Check } from "lucide-react";
+import { getComponentSource, getComponentRelativePath } from "@/lib/component-utils";
+
+type AnimationCategory = string;
+
+// Define a more flexible component type that can accept any props
+interface AnimationComponentProps {
+  [key: string]: any;
+}
+
+type AnimationComponent = React.ComponentType<AnimationComponentProps>;
+
+interface AnimationItem {
+  id: number;
+  title: string;
+  description: string;
+  category: AnimationCategory;
+  component: AnimationComponent;
+  tags?: string[];
+  // Add any other properties that might exist in your animation items
+  [key: string]: any;
+}
 
 // Group animations by category
-const groupByCategory = (anims: typeof animations) => {
-  return anims.reduce((acc, anim) => {
-    if (!acc[anim.category]) {
-      acc[anim.category] = [];
+const groupByCategory = (anims: AnimationItem[]): Record<string, AnimationItem[]> => {
+  const groups: Record<string, AnimationItem[]> = {};
+  
+  anims.forEach((anim) => {
+    if (!groups[anim.category]) {
+      groups[anim.category] = [];
     }
-    acc[anim.category].push(anim);
-    return acc;
-  }, {} as Record<AnimationCategory, typeof animations>);
+    groups[anim.category].push(anim);
+  });
+  
+  return groups;
 };
 
-export function AnimatedTabsDemo() {
-  const [activeCategory, setActiveCategory] = useState<AnimationCategory>('Loading');
-  const [selectedAnimation, setSelectedAnimation] = useState<number | null>(null);
+interface AnimationTabsProps {
+  // Add any props you need
+  initialCategory?: string;
+  initialAnimationId?: number;
+}
+
+export function AnimationTabs({ initialCategory, initialAnimationId }: AnimationTabsProps) {
+  const [activeCategory, setActiveCategory] = useState<AnimationCategory>(initialCategory || 'Loading');
+  const [selectedAnimation, setSelectedAnimation] = useState<number | null>(initialAnimationId || null);
   const [activeTab, setActiveTab] = useState<'preview' | 'code'>('preview');
   const [copied, setCopied] = useState(false);
   const [sourceCode, setSourceCode] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Group animations by category
   const animationsByCategory = useMemo(() => groupByCategory(animations), []);
-  const categories = Object.keys(animationsByCategory).length > 0 
-    ? Object.keys(animationsByCategory) as AnimationCategory[]
-    : [];
+  const categories = Object.keys(animationsByCategory) as AnimationCategory[];
     
   // Set default category if not set
   useEffect(() => {
-    if (categories.length > 0 && !activeCategory) {
+    if (categories.length > 0 && (!activeCategory || !animationsByCategory[activeCategory])) {
       setActiveCategory(categories[0]);
     }
-  }, [categories, activeCategory]);
+  }, [categories, activeCategory, animationsByCategory]);
 
-  // Reset selected animation when category changes
   useEffect(() => {
     setSelectedAnimation(null);
   }, [activeCategory]);
 
   // Get the selected animation component to display
-  const selectedAnim = selectedAnimation
-    ? animations.find(anim => anim.id === selectedAnimation)
-    : null;
+  const selectedAnim = useMemo(() => {
+    if (!selectedAnimation) return null;
+    return animations.find((anim) => anim.id === selectedAnimation) || null;
+  }, [selectedAnimation]);
+
+  // Create a safe component that handles any required props
+  const AnimationComponent = useMemo(() => {
+    if (!selectedAnim?.component) return () => null;
+    
+    // Return a wrapper component that handles any required props
+    return function AnimationWrapper() {
+      const Component = selectedAnim.component;
+      // Pass any required props that the component might need
+      const props = {
+        // Add any default props here if needed
+        className: 'w-full h-full',
+        ...(selectedAnim.props || {}) // Spread any additional props from the animation item
+      };
+      
+      return <Component {...props} />;
+    };
+  }, [selectedAnim]);
 
   // Fetch source code when animation is selected
   useEffect(() => {
     if (!selectedAnim?.component) return;
     
     const fetchSourceCode = async () => {
+      setIsLoading(true);
       try {
-        // Get the component file path dynamically
-        const componentPath = selectedAnim.component.name;
-        // This is a placeholder - in a real app, you'd need to map component names to their file paths
-        const response = await fetch(`/api/source-code?component=${componentPath}`);
-        if (response.ok) {
-          const data = await response.text();
-          setSourceCode(data);
-        } else {
-          setSourceCode(`// Source code not available for ${componentPath}
-// To enable source code viewing, implement an API route at /api/source-code
-// that returns the source code for the requested component`);
-        }
+        // Get the component path
+        const componentPath = getComponentRelativePath(selectedAnim.component);
+        // Use our utility function to get the source code
+        const code = await getComponentSource(componentPath);
+        setSourceCode(code);
       } catch (error) {
-        console.error('Error fetching source code:', error);
-        setSourceCode('// Error loading source code. Check console for details.');
+        console.error('Error loading component source:', error);
+        setSourceCode(`// Error loading source code for ${selectedAnim.title}
+// ${error instanceof Error ? error.message : 'Unknown error'}`);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -85,6 +128,8 @@ export function AnimatedTabsDemo() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const AnimationComponent = selectedAnim?.component || (() => null);
+
   return (
     <div className="h-full w-full">
       <style jsx global>{`
@@ -96,6 +141,7 @@ export function AnimatedTabsDemo() {
           animation: fadeIn 0.3s ease-out forwards;
         }
       `}</style>
+      
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Animation Showcase</h1>
@@ -123,7 +169,7 @@ export function AnimatedTabsDemo() {
                 >
                   {category}
                   <span className="ml-2 px-2 py-0.5 text-xs bg-blue-100 text-blue-700 rounded-full">
-                    {animationsByCategory[category].length}
+                    {animationsByCategory[category]?.length || 0}
                   </span>
                 </TabsTrigger>
               ))}
@@ -140,14 +186,14 @@ export function AnimatedTabsDemo() {
                   {activeCategory} Animations
                 </CardTitle>
                 <CardDescription>
-                  {animationsByCategory[activeCategory].length} animations available
+                  {animationsByCategory[activeCategory]?.length || 0} animations available
                 </CardDescription>
               </CardHeader>
               <div
                 ref={containerRef}
                 className="overflow-y-auto max-h-[600px] p-2 space-y-2"
               >
-                {animationsByCategory[activeCategory].map((anim, index) => (
+                {animationsByCategory[activeCategory]?.map((anim, index) => (
                   <div
                     key={anim.id}
                     className="transition-all duration-300 opacity-0 translate-y-4 animate-fadeIn"
@@ -198,6 +244,7 @@ export function AnimatedTabsDemo() {
                   {selectedAnim?.description || 'Choose an animation from the list to preview it here'}
                 </CardDescription>
               </CardHeader>
+              
               <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'preview' | 'code')}>
                 <TabsList className="w-full justify-start px-4 pt-2 pb-0 bg-transparent border-b rounded-none">
                   <TabsTrigger value="preview" className="data-[state=active]:shadow-none">Preview</TabsTrigger>
@@ -206,12 +253,11 @@ export function AnimatedTabsDemo() {
                 <div className="p-4">
                   <TabsContent value="preview" className="m-0">
                     <div className="relative h-full">
-                      {selectedAnim?.component ? (
+                      {selectedAnim ? (
                         <div
-                          key={selectedAnim.id}
                           className="flex items-center justify-center min-h-[400px] bg-gray-50 rounded-lg p-6 animate-fadeIn"
                         >
-                          <selectedAnim.component />
+                          <AnimationComponent />
                         </div>
                       ) : (
                         <div className="flex flex-col items-center justify-center min-h-[400px] bg-gray-50 rounded-lg p-6 text-center">
@@ -243,6 +289,7 @@ export function AnimatedTabsDemo() {
                       )}
                     </div>
                   </TabsContent>
+                  
                   <TabsContent value="code" className="m-0">
                     {selectedAnim ? (
                       <div className="relative">
@@ -268,6 +315,32 @@ export function AnimatedTabsDemo() {
                             copied={copied}
                             previewable={false}
                           />
+                        </div>
+                        
+                        {/* Animation details */}
+                        <div className="mt-6 pt-6 border-t">
+                          <h4 className="text-sm font-medium text-gray-900 mb-3">Details</h4>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex">
+                              <span className="w-24 text-gray-500">Category:</span>
+                              <span className="font-medium">{selectedAnim.category}</span>
+                            </div>
+                            {selectedAnim.tags && selectedAnim.tags.length > 0 && (
+                              <div className="flex items-start">
+                                <span className="w-24 text-gray-500 pt-1">Tags:</span>
+                                <div className="flex-1 flex flex-wrap gap-2">
+                                  {selectedAnim.tags.map((tag) => (
+                                    <span
+                                      key={tag}
+                                      className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+                                    >
+                                      {tag}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     ) : (

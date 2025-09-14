@@ -63,7 +63,7 @@ const Footer = () => {
           {/* Social links */}
           <div className="flex items-center gap-4">
             <a 
-              href="https://github.com" 
+              href="https://github.com/hadisa/animation-showcase" 
               className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-cyan-500/10 transition-all duration-300 group"
               aria-label="GitHub"
             >

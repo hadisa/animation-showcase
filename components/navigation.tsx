@@ -40,14 +40,10 @@ const navigationItems = [
 const externalLinks = [
   {
     name: "GitHub",
-    href: "https://github.com",
+    href: "https://github.com/hadisa/animation-showcase",
     icon: Github,
   },
-  {
-    name: "CodePen",
-    href: "https://codepen.io",
-    icon: ExternalLink,
-  },
+
 ]
 
 interface NavigationProps {

@@ -31,7 +31,7 @@ interface BaseAnimationCardProps {
   children?: React.ReactNode;
 }
 
-export const BaseAnimationCard = ({
+export const BaseAnimationCard = React.memo(({
   animation,
   viewMode,
   index,
@@ -102,36 +102,6 @@ export const BaseAnimationCard = ({
     >
       {children || (
         <>
-          {/* <div className="bg-gradient-to-br from-muted/30 to-muted/10 rounded-xl p-8 flex items-center justify-center min-h-[140px] relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-50"></div>
-            <div
-              className={`w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center relative z-10 ${
-                playingAnimations.has(animation.id) ? animation.preview : ""
-              }`}
-            >
-              <Play className="w-8 h-8 text-white" />
-            </div>
-            <Button
-              size="sm"
-              variant="secondary"
-              className="absolute top-3 right-3 z-10"
-              onClick={() => toggleAnimation(animation.id)}
-            >
-              {playingAnimations.has(animation.id) ? (
-                <Pause className="w-3 h-3" />
-              ) : (
-                <Play className="w-3 h-3" />
-              )}
-            </Button>
-          </div> */}
-          {/* <OrnateGameCard3 /> */}
-          {/* {animation.component &&
-            React.createElement(animation.component, {
-              // You can pass any additional props that your animation components might need
-              // For example, if your animation components need a className or other props
-              className: "w-full h-48 flex items-center justify-center",
-            })} */}
-
           <div className="bg-gradient-to-r from-muted/50 to-muted/30 rounded-xl p-4 border border-border/50">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
@@ -212,4 +182,4 @@ export const BaseAnimationCard = ({
       )}
     </CardContent>
   </Card>
-);
+));

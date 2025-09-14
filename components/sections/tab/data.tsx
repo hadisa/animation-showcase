@@ -8,7 +8,6 @@ import GameBackground1 from "@/components/animation/bg/game-background1";
 import GameBackground2 from "@/components/animation/bg/game-background2";
 import GameBackground3 from "@/components/animation/bg/game-background3";
 import GameBackground4 from "@/components/animation/bg/game-background4";
-import GameBackground5 from "@/components/animation/bg/game-background5";
 import ProfessionalBrainAnimation from "@/components/animation/bg/professionalBrainAnimation";
 import SimpleBg from "@/components/animation/bg/simpleBg";
 import WaveBg from "@/components/animation/bg/wave";
@@ -410,14 +409,7 @@ export const animations = [
     category: "Background" as AnimationCategory,
     tags: ["background", "game", "modern"],
   },
-  {
-    id: 44,
-    title: "Game Background 5",
-    description: "Animated hero background for modern interfaces.",
-    component: GameBackground5,
-    category: "Background" as AnimationCategory,
-    tags: ["background", "game", "modern"],
-  },
+
   {
     id: 45,
     title: "Task Animation",

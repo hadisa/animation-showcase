@@ -1,543 +1,608 @@
+import { RotateCw, Sparkles, Zap, Layout, Code, Play, Box, Image } from "lucide-react";
+import React from 'react';
+
+// Import animation components
 import AnimatedBg from "@/components/animation/animatedBg1";
-import FuturisticAnimatedHeroBackground from "@/components/animation/bg/futuristic-animated-hero-background";
-import FuturisticAnimatedHeroBackground1 from "@/components/animation/bg/FuturisticAnimatedHeroBackground";
 import GameBackground from "@/components/animation/bg/game-background";
-import GameBackground2 from "@/components/animation/bg/game-background2";
-import GameBackground3 from "@/components/animation/bg/game-background3";
-import GameBackground4 from "@/components/animation/bg/game-background4";
-import GameBackground5 from "@/components/animation/bg/game-background5";
-import AnimatedBorderCard from "@/components/animation/card/animated-border-card";
-import AnimatedBrightBorderCard from "@/components/animation/card/animated-border-card-bright";
-import AnimatedBorderCard1 from "@/components/animation/card/animated-border-card1";
 import AnimatedCard from "@/components/animation/card/animated-card";
 import FuturisticGameCard from "@/components/animation/card/futuristic-game-card";
-import ShakeCard from "@/components/animation/card/shake-card";
-import ShineCard from "@/components/animation/card/shine-card";
-import StarCard from "@/components/animation/card/star-card";
-import StarCardBorder from "@/components/animation/card/star-card-border";
-import SuperAnimatedHeroCard from "@/components/animation/card/super-animated-hero-card";
 import FuturisticGameLoading from "@/components/animation/futuristicGameLoading";
-import GameLoadingInterface from "@/components/animation/gameLoadingInterface";
-import HolographicLoader from "@/components/animation/holo-graphic-loader";
 import LoadingSpinner from "@/components/animation/load";
 import LoadingAmazing from "@/components/animation/loading-amazing";
 import LoadingPro from "@/components/animation/loadingPro";
-import DataStreamAnimation from "@/components/animation/network/data-stream-animation";
-import ExactCircuitAnimation from "@/components/animation/network/exact-circuit-animation";
-import ExactCyberNetworkAnimation from "@/components/animation/network/exact-cyber-network-animation";
 import ProfessionalLoadingSpinner from "@/components/animation/ProfessionalLoadingSpinner";
 import QuantumGridLoading from "@/components/animation/quantumGridLoading";
 import StepLoading from "@/components/animation/step-loading";
+import WarpCoreLoading from "@/components/animation/WarpCoreLoading";
+
+
+import ShineCard from "@/components/animation/card/shine-card";
+import AnimatedBorderCard from "@/components/animation/card/animated-border-card";
+import StarCard from "@/components/animation/card/star-card";
+import GameLoadingInterface from "@/components/animation/gameLoadingInterface";
+import FuturisticAnimatedHeroBackground from "@/components/animation/bg/futuristic-animated-hero-background";
+import FuturisticAnimatedHeroBackground1 from "@/components/animation/bg/FuturisticAnimatedHeroBackground";
+import GameBackground4 from "@/components/animation/bg/game-background4";
+import AnimatedBrightBorderCard from "@/components/animation/card/animated-border-card-bright";
+import AnimatedBorderCard1 from "@/components/animation/card/animated-border-card1";
+import ShakeCard from "@/components/animation/card/shake-card";
+import StarCardBorder from "@/components/animation/card/star-card-border";
+import SuperAnimatedHeroCard from "@/components/animation/card/super-animated-hero-card";
+import HolographicLoader from "@/components/animation/holo-graphic-loader";
+import DataStreamAnimation from "@/components/animation/network/data-stream-animation";
+import ExactCircuitAnimation from "@/components/animation/network/exact-circuit-animation";
+import ExactCyberNetworkAnimation from "@/components/animation/network/exact-cyber-network-animation";
 import HadisaTextAnimation from "@/components/animation/text/hadisa-text-animation";
 import TaskAnimation from "@/components/animation/ui-elements/task-animation";
-import WarpCoreLoading from "@/components/animation/WarpCoreLoading";
-import {
-  ArrowRight,
-  MousePointer,
-  RotateCw,
-  Sparkles,
-  Zap,
-} from "lucide-react";
-import { AnimationCategory } from "../tab/data";
 
-export const animationCategories = [
-  // {
-  //   id: "entrance",
-  //   name: "Entrance",
-  //   icon: ArrowRight,
-  //   count: 24,
-  //   color: "from-blue-500 to-cyan-500",
-  //   description: "Eye-catching entrance animations",
-  //   animations: [
-     
-  //     {
-  //       id: "fade-in-up",
-  //       name: "Fade In Up",
-  //       description: "Smooth fade in with upward motion",
-  //       preview: "animate-fade-in-up",
-  //       code: "animate-fade-in-up",
-  //       difficulty: "Easy",
-  //       duration: "0.6s",
-  //       popularity: 95,
-  //       tags: ["fade", "entrance", "smooth"],
-  //     },
-  //     {
-  //       id: "slide-in-left",
-  //       name: "Slide In Left",
-  //       description: "Slide in from the left side",
-  //       preview: "animate-slide-in-left",
-  //       code: "animate-slide-in-left",
-  //       difficulty: "Easy",
-  //       duration: "0.5s",
-  //       popularity: 88,
-  //       tags: ["slide", "entrance", "directional"],
-  //     },
-  //     {
-  //       id: "bounce-in",
-  //       name: "Bounce In",
-  //       description: "Bouncy entrance animation",
-  //       preview: "animate-bounce-in",
-  //       code: "animate-bounce-in",
-  //       difficulty: "Medium",
-  //       duration: "0.75s",
-  //       popularity: 92,
-  //       tags: ["bounce", "entrance", "playful"],
-  //     },
-  //     {
-  //       id: "zoom-in",
-  //       name: "Zoom In",
-  //       description: "Scale-based entrance effect",
-  //       preview: "animate-zoom-in",
-  //       code: "animate-zoom-in",
-  //       difficulty: "Easy",
-  //       duration: "0.5s",
-  //       popularity: 85,
-  //       tags: ["zoom", "scale", "entrance"],
-  //     },
-  //     {
-  //       id: "flip-in-x",
-  //       name: "Flip In X",
-  //       description: "3D flip entrance animation",
-  //       preview: "animate-flip-in-x",
-  //       code: "animate-flip-in-x",
-  //       difficulty: "Advanced",
-  //       duration: "0.75s",
-  //       popularity: 78,
-  //       tags: ["flip", "3d", "entrance"],
-  //     },
-  //     {
-  //       id: "fade-in-down",
-  //       name: "Fade In Down",
-  //       description: "Fade in with downward motion",
-  //       preview: "animate-fade-in-down",
-  //       code: "animate-fade-in-down",
-  //       difficulty: "Easy",
-  //       duration: "0.6s",
-  //       popularity: 90,
-  //       tags: ["fade", "entrance", "directional"],
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: "hover",
-  //   name: "Hover Effects",
-  //   icon: MousePointer,
-  //   count: 32,
-  //   color: "from-green-500 to-emerald-500",
-  //   description: "Interactive hover animations",
-  //   animations: [
-   
-  //   ],
-  // },
-  {
-    id: "loading",
-    name: "Loading",
-    icon: RotateCw,
-    count: 16,
-    color: "from-yellow-500 to-orange-500",
-    description: "Loading and progress animations",
-    animations: [
-      {
-        id: "step-loading",
-        name: "Step Loading",
-        description: "Step loading animation",
-        preview: "step-loading",
-        code: "step-loading",
-        component: StepLoading,
-        difficulty: "Easy",
-        duration: "1s",
-        popularity: 98,
-        tags: ["loading", "step", "classic"],
-      },
-      {
-        id: "holographic-loader",
-        name: "Holographic Loader",
-        description: "Pulsing opacity effect",
-        component: HolographicLoader,
-        preview: "animate-pulse",
-        code: "animate-pulse",
-        difficulty: "Easy",
-        duration: "2s",
-        popularity: 94,
-        tags: ["loading", "pulse", "opacity"],
-      },
-      {
-        id: "warp-core-loading",
-        name: "Warp Core Loading",
-        description: "Bouncing motion",
-        preview: "animate-bounce",
-        component: WarpCoreLoading,
-        code: "animate-bounce",
-        difficulty: "Easy",
-        duration: "1s",
-        popularity: 87,
-        tags: ["loading", "bounce", "motion"],
-      },
-      {
-        id: "grid-loading",
-        name: "Grid Loading",
-        description: "Grid loading animation",
-        preview: "animate-grid-loading",
-        component: QuantumGridLoading,
-        code: "animate-grid-loading",
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 79,
-        tags: ["loading", "grid", "playful"],
-      },
-      {
-        id: "game-loading-interface",
-        name: "Game Loading Interface",
-        description: "Playful wiggle animation",
-        preview: "animate-wiggle",
-        component: GameLoadingInterface,
-        code: "animate-wiggle",
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 79,
-        tags: ["loading", "wiggle", "playful"],
-      },
-      {
-        id: "futuristic-loading",
-        name: "Futuristic Loading",
-        description: "Futuristic loading animation",
-        preview: "animate-futuristic-loading",
-        component: FuturisticGameLoading,
-        code: "animate-futuristic-loading",
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 79,
-        tags: ["loading", "futuristic", "playful"],
-      },
-      {
-        id: "dots-loader-pro-1",
-        name: "Dots Loader Pro",
-        description: "Smooth dot loading animation",
-        preview: "animate-wiggle",
-        component: LoadingPro,
-        code: "animate-wiggle",
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 79,
-        tags: ["loading", "dots", "smooth"],
-      },
-      {
-        id: "dots-loader-pro-2",
-        name: "Dual Dots Loader",
-        description: "Double dot loading animation",
-        preview: "animate-wiggle",
-        component: LoadingAmazing,
-        code: "animate-wiggle",
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 79,
-        tags: ["loading", "dual-dots", "smooth"],
-      },
-      {
-        id: "loading-spinner",
-        name: "Loading Spinner",
-        description: "Loading spinner animation",
-        preview: "animate-loading-spinner",
-        component: LoadingSpinner,
-        code: "animate-loading-spinner",
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 79,
-        tags: ["loading", "spinner", "playful"],
-      },
-      {
-        id: "professional-loading-spinner",
-        name: "Professional Loading Spinner",
-        description: "Professional loading spinner animation",
-        preview: "animate-loading-spinner",
-        component: ProfessionalLoadingSpinner,
-        code: "animate-loading-spinner",
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 79,
-        tags: ["loading", "loading-spinner", "playful"],
-      },
-    ],
-  },
-  {
-    id: "bg",
-    name: "Background",
-    icon: Zap,
-    count: 28,
-    color: "from-purple-500 to-pink-500",
-    description: "Background animations",
-    animations: [
-      // {
-      //   id: "game-bg-5",
-      //   name: "Animated Hero Background",
-      //   description: "Animated hero background for modern interfaces.",
-      //   component: GameBackground5,
-      //   category: "Background" as AnimationCategory,
-      //   tags: ["background", "game", "modern"],
-      //   preview: "animate-fade-in-up",
-      //   code: "animate-fade-in-up",
-      //   difficulty: "Easy",
-      //   duration: "0.6s",
-      //   popularity: 95,
-      // },
-      {
-        id: "hover-scale",
-        name: "Hover Scale",
-        description: "Scale up on hover interaction",
-        preview: "hover:scale-105 transition-transform duration-300",
-        code: "hover:scale-105 transition-transform duration-300",
-        difficulty: "Easy",
-        component: HadisaTextAnimation,
-        duration: "0.3s",
-        popularity: 96,
-        tags: ["hover", "scale", "interactive"],
-      },
-      {
-        id: "hover-glow",
-        name: "Hover Glow",
-        description: "Glowing effect on hover",
-        component: DataStreamAnimation,
-        preview:
-          "hover:shadow-lg hover:shadow-primary/25 transition-shadow duration-300",
-        code: "hover:shadow-lg hover:shadow-primary/25 transition-shadow duration-300",
-        difficulty: "Medium",
-        duration: "0.3s",
-        popularity: 89,
-        tags: ["hover", "glow", "shadow"],
-      },
-      {
-        id: "hover-lift",
-        name: "Hover Lift",
-        description: "Lift effect with shadow",
-        preview:
-          "hover:-translate-y-2 hover:shadow-xl transition-all duration-300",
-        code: "hover:-translate-y-2 hover:shadow-xl transition-all duration-300",
-        difficulty: "Easy",
-        component: ExactCyberNetworkAnimation,
-        duration: "0.3s",
-        popularity: 93,
-        tags: ["hover", "lift", "shadow"],
-      },
-      {
-        id: "hover-rotate",
-        name: "Hover Rotate",
-        description: "Subtle rotation on hover",
-        preview: "hover:rotate-6 transition-transform duration-300",
-        code: "hover:rotate-6 transition-transform duration-300",
-        difficulty: "Easy",
-        component: ExactCircuitAnimation,
-        duration: "0.3s",
-        popularity: 82,
-        tags: ["hover", "rotate", "playful"],
-      },
-      {
-        id: "hover-skew",
-        name: "Hover Skew",
-        description: "Skew transformation effect",
-        preview: "hover:skew-x-12 transition-transform duration-300",
-        code: "hover:skew-x-12 transition-transform duration-300",
-        difficulty: "Medium",
-        component: AnimatedBg,
-        duration: "0.3s",
-        popularity: 75,
-        tags: ["hover", "skew", "creative"],
-      },
-      {
-        id: "fade-transition",
-        name: "Fade Transition",
-        description: "Smooth opacity transition",
-        preview: "transition-opacity duration-300 hover:opacity-75",
-        code: "transition-opacity duration-300",
-        component: FuturisticAnimatedHeroBackground1,
-        difficulty: "Easy",
-        duration: "0.3s",
-        popularity: 97,
-        tags: ["transition", "fade", "opacity"],
-      },
-      {
-        id: "slide-transition",
-        name: "Slide Transition",
-        description: "Transform-based sliding",
-        preview: "transition-transform duration-300 hover:translate-x-2",
-        code: "transition-transform duration-300",
-        difficulty: "Easy",
-        component: GameBackground,
-        duration: "0.3s",
-        popularity: 91,
-        tags: ["transition", "slide", "transform"],
-      },
 
-      {
-        id: "game-background-4",
-        name: "Game Background 4",
-        description: "Animated hero background for modern interfaces.",
-        preview: "transition-colors duration-300 hover:bg-primary/10",
-        code: "transition-colors duration-300",
-        difficulty: "Easy",
-        component: GameBackground4,
-        duration: "0.3s",
-        popularity: 95,
-        tags: ["transition", "color", "background"],
-      },
-     
-      {
-        id: "futuristic-hero-bg-transition",
-        name: "Futuristic Hero Background",
-        description: "Animated hero background for modern interfaces.",
-        preview: "transition-colors duration-300 hover:bg-primary/10",
-        code: "transition-colors duration-300",
-        difficulty: "Easy",
-        component: FuturisticAnimatedHeroBackground,
-        duration: "0.3s",
-        popularity: 95,
-        tags: ["transition", "color", "background"],
-      },
-    ],
-  },
-  {
-    id: "card",
-    name: "Card",
-    icon: Sparkles,
-    count: 20,
-    color: "from-red-500 to-pink-500",
-    description: "Eye-catching attention animations",
-    animations: [
-      {
-        id: "futuristic-game-card",
-        name: "Futuristic Game Card",
-        description: "Bouncing motion",
-        preview: "animate-bounce",
-        code: "animate-bounce",
-        component: FuturisticGameCard,
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 20,
-        tags: ["attention", "bounce", "motion"],
-      },
-      {
-        id: "animated-bright-border-card",
-        name: "Animated Bright Border Card",
-        description: "Animated border with bright color",
-        preview: "animate-bounce",
-        code: "animate-bounce",
-        component: AnimatedBrightBorderCard,
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 21,
-        tags: ["attention", "bounce", "motion"],
-      },
-      {
-        id: "shine-card",
-        name: "Shine Card",
-        description: "Bouncing motion",
-        preview: "animate-bounce",
-        code: "animate-bounce",
-        component: ShineCard,
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 22,
-        tags: ["attention", "bounce", "motion"],
-      },
-      {
-        id: "animated-border-card",
-        name: "Animated Border Card",
-        description: "Hover to See me",
-        preview: "animate-bounce",
-        code: "animate-bounce",
-        component: AnimatedBorderCard,
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 23,
-        tags: ["attention", "bounce", "motion"],
-      },
-      {
-        id: "star-border-card",
-        name: "Star Border Card",
-        description: "Bouncing motion",
-        preview: "animate-bounce",
-        code: "animate-bounce",
-        component: StarCard,
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 87,
-        tags: ["attention", "bounce", "motion"],
-      },
-      {
-        id: "star-border-card-1",
-        name: "Star Border Card 1",
-        description: "Card with animated star border",
-        preview: "animate-bounce",
-        code: "animate-bounce",
-        component: StarCardBorder,
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 87,
-        tags: ["attention", "star", "border", "motion"],
-      },
-     
+// Type definitions
+export type AnimationDifficulty = 'beginner' | 'intermediate' | 'advanced' | 'Easy' | 'Medium' | 'Advanced';
 
-      {
-        id: "animated-border-card-1",
-        name: "Animated Border Card 1",
-        description: "Bouncing motion",
-        preview: "animate-bounce",
-        code: "animate-bounce",
-        component: AnimatedBorderCard1,
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 87,
-        tags: ["attention", "bounce", "motion"],
-      },
+export interface AnimationItem {
+  id: string;
+  name: string;
+  description: string;
+  component: React.ComponentType<any>;
+  filePath: string;
+  category: string;
+  tags?: string[];
+  difficulty?: AnimationDifficulty;
+  duration?: string;
+  popularity?: number;
+  preview?: string;
+  code?: string;
+}
 
-      {
-        id: "animated-card-1",
-        name: "Animated Card",
-        description: "Bouncing motion effect",
-        preview: "animate-animated-card-1",
-        code: "animate-animated-card-1",
-        component: AnimatedCard,
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 87,
-        tags: ["attention", "animated", "motion"],
-      },
-      {
-        id: "task-animation-card",
-        name: "Task Animation",
-        description: "Interactive task animation",
-        preview: "animate-bounce",
-        code: "animate-bounce",
-        component: TaskAnimation,
-        difficulty: "Medium",
-        duration: "1s",
-        popularity: 87,
-        tags: ["interactive", "task", "motion"],
-      },
-      {
-        id: "hover-change",
-        name: "Hover Change",
-        component: SuperAnimatedHeroCard,
-        description: "Hover me that i changed!",
-        preview: "hover-change",
-        code: "hover-change",
-        difficulty: "Medium",
-        duration: "0.82s",
-        popularity: 46,
-        tags: ["animation", "hover"],
-      },
+export interface AnimationCategory {
+  id: string;
+  name: string;
+  icon: React.ComponentType<any>;
+  count: number;
+  color: string;
+  description: string;
+  animations: AnimationItem[];
+}
 
-      {
-        id: "shake",
-        name: "Shake",
-        description: "shake effect, Hover Me !!!",
-        preview: "animate-shake",
-        code: "animate-shake",
-        component: ShakeCard,
-        difficulty: "Medium",
-        duration: "1.5s",
-        popularity: 47,
-        tags: ["attention", "pulse", "heartbeat"],
-      },
-    ],
-  },
+// Helper function to create animation items
+const createAnimationItem = (
+  id: string,
+  name: string,
+  description: string,
+  component: React.ComponentType<any>,
+  filePath: string,
+  category: string,
+  options: Partial<AnimationItem> = {}
+): AnimationItem => ({
+  id,
+  name,
+  description,
+  component,
+  filePath,
+  category,
+  tags: [],
+  difficulty: 'intermediate',
+  duration: '1s',
+  popularity: 80,
+  ...options,
+});
+
+// Helper function to create animation categories
+const createAnimationCategory = (
+  id: string,
+  name: string,
+  icon: React.ComponentType<any>,
+  color: string,
+  description: string,
+  animations: AnimationItem[]
+): AnimationCategory => ({
+  id,
+  name,
+  icon,
+  count: animations.length,
+  color,
+  description,
+  animations,
+});
+
+// Animation items by category
+const loadingAnimations: AnimationItem[] = [
+  createAnimationItem(
+    'loading-spinner',
+    'Loading Spinner',
+    'A simple loading spinner animation',
+    LoadingSpinner,
+    '@/components/animation/load',
+    'loading',
+    {
+      tags: ['spinner', 'loading'],
+      difficulty: 'beginner',
+      duration: '1s',
+      popularity: 90
+    }
+  ),
+  createAnimationItem(
+    'futuristic-loading',
+    'Futuristic Loading',
+    'A modern futuristic loading animation',
+    FuturisticGameLoading,
+    '@/components/animation/futuristicGameLoading',
+    'loading',
+    {
+      tags: ['futuristic', 'loading', 'game'],
+      difficulty: 'intermediate',
+      duration: '1.5s',
+      popularity: 85
+    }
+  ),
+  createAnimationItem(
+    'quantum-grid',
+    'Quantum Grid Loading',
+    'A grid-based loading animation with quantum effects',
+    QuantumGridLoading,
+    '@/components/animation/quantumGridLoading',
+    'loading',
+    {
+      tags: ['grid', 'loading', 'quantum'],
+      difficulty: 'advanced',
+      duration: '2s',
+      popularity: 88
+    }
+  ),
+  createAnimationItem(
+    'step-loading',
+    'Step Loading',
+    'Step loading animation',
+    StepLoading,
+    '@/components/animation/step-loading',
+    'loading',
+    {
+      tags: ['loading', 'step', 'classic'],
+      difficulty: 'Easy',
+      duration: '1s',
+      popularity: 98
+    }
+  ),
+  createAnimationItem(
+    'holographic-loader',
+    'Holographic Loader',
+    'Pulsing opacity effect',
+    HolographicLoader,
+    '@/components/animation/holographicLoader',
+    'loading',
+    {
+      tags: ['loading', 'pulse', 'opacity'],
+      difficulty: 'Easy',
+      duration: '2s',
+      popularity: 94
+    }
+  ),
+  createAnimationItem(
+    'warp-core-loading',
+    'Warp Core Loading',
+    'Bouncing motion',
+    WarpCoreLoading,
+    '@/components/animation/WarpCoreLoading',
+    'loading',
+    {
+      tags: ['loading', 'bounce', 'motion'],
+      difficulty: 'Easy',
+      duration: '1s',
+      popularity: 87
+    }
+  ),
+  createAnimationItem(
+    'grid-loading',
+    'Grid Loading',
+    'Grid loading animation',
+    QuantumGridLoading,
+    '@/components/animation/quantumGridLoading',
+    'loading',
+    {
+      tags: ['loading', 'grid', 'playful'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 79
+    }
+  ),
+  createAnimationItem(
+    'game-loading-interface',
+    'Game Loading Interface',
+    'Playful wiggle animation',
+    GameLoadingInterface,
+    '@/components/animation/gameLoadingInterface',
+    'loading',
+    {
+      tags: ['loading', 'wiggle', 'playful'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 79
+    }
+  ),
+  createAnimationItem(
+    'dots-loader-pro-1',
+    'Dots Loader Pro',
+    'Smooth dot loading animation',
+    LoadingPro,
+    '@/components/animation/loadingPro',
+    'loading',
+    {
+      tags: ['loading', 'dots', 'smooth'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 79
+    }
+  ),
+  createAnimationItem(
+    'dots-loader-pro-2',
+    'Dual Dots Loader',
+    'Double dot loading animation',
+    LoadingAmazing,
+    '@/components/animation/loading-amazing',
+    'loading',
+    {
+      tags: ['loading', 'dual-dots', 'smooth'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 79
+    }
+  ),
+  createAnimationItem(
+    'professional-loading-spinner',
+    'Professional Loading Spinner',
+    'Professional loading spinner animation',
+    ProfessionalLoadingSpinner,
+    '@/components/animation/ProfessionalLoadingSpinner',
+    'loading',
+    {
+      tags: ['loading', 'loading-spinner', 'playful'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 79
+    }
+  )
 ];
+
+const backgroundAnimations: AnimationItem[] = [
+  createAnimationItem(
+    'animated-bg',
+    'Animated Background',
+    'A beautiful animated background with gradient effects',
+    AnimatedBg,
+    '@/components/animation/animatedBg1',
+    'background',
+    {
+      tags: ['background', 'gradient', 'animated'],
+      difficulty: 'intermediate',
+      duration: '10s',
+      popularity: 92
+    }
+  ),
+  createAnimationItem(
+    'game-bg',
+    'Game Background',
+    'Animated background suitable for games',
+    GameBackground,
+    '@/components/animation/bg/game-background',
+    'background',
+    {
+      tags: ['game', 'background', 'animated'],
+      difficulty: 'intermediate',
+      duration: '8s',
+      popularity: 88
+    }
+  ),
+  createAnimationItem(
+    'hover-scale',
+    'Hover Scale',
+    'Scale up on hover interaction',
+    HadisaTextAnimation,
+    '@/components/animation/text/hadisa-text-animation',
+    'background',
+    {
+      tags: ['hover', 'scale', 'interactive'],
+      difficulty: 'Easy',
+      duration: '0.3s',
+      popularity: 96
+    }
+  ),
+  createAnimationItem(
+    'hover-glow',
+    'Hover Glow',
+    'Glowing effect on hover',
+    DataStreamAnimation,
+    '@/components/animation/dataStreamAnimation',
+    'background',
+    {
+      tags: ['hover', 'glow', 'shadow'],
+      difficulty: 'Medium',
+      duration: '0.3s',
+      popularity: 89
+    }
+  ),
+  createAnimationItem(
+    'hover-lift',
+    'Hover Lift',
+    'Lift effect with shadow',
+    ExactCyberNetworkAnimation,
+    '@/components/animation/exactCyberNetworkAnimation',
+    'background',
+    {
+      tags: ['hover', 'lift', 'shadow'],
+      difficulty: 'Easy',
+      duration: '0.3s',
+      popularity: 93
+    }
+  ),
+  createAnimationItem(
+    'hover-rotate',
+    'Hover Rotate',
+    'Subtle rotation on hover',
+    ExactCircuitAnimation,
+    '@/components/animation/exactCircuitAnimation',
+    'background',
+    {
+      tags: ['hover', 'rotate', 'playful'],
+      difficulty: 'Easy',
+      duration: '0.3s',
+      popularity: 82
+    }
+  ),
+  createAnimationItem(
+    'fade-transition',
+    'Fade Transition',
+    'Smooth opacity transition',
+    FuturisticAnimatedHeroBackground1,
+    '@/components/animation/futuristicAnimatedHeroBackground1',
+    'background',
+    {
+      tags: ['transition', 'fade', 'opacity'],
+      difficulty: 'Easy',
+      duration: '0.3s',
+      popularity: 97
+    }
+  ),
+  createAnimationItem(
+    'slide-transition',
+    'Slide Transition',
+    'Transform-based sliding',
+    GameBackground,
+    '@/components/animation/bg/game-background',
+    'background',
+    {
+      tags: ['transition', 'slide', 'transform'],
+      difficulty: 'Easy',
+      duration: '0.3s',
+      popularity: 91
+    }
+  ),
+  createAnimationItem(
+    'game-background-4',
+    'Game Background 4',
+    'Animated hero background for modern interfaces.',
+    GameBackground4,
+    '@/components/animation/bg/game-background-4',
+    'background',
+    {
+      tags: ['transition', 'color', 'background'],
+      difficulty: 'Easy',
+      duration: '0.3s',
+      popularity: 95
+    }
+  ),
+  createAnimationItem(
+    'futuristic-hero-bg-transition',
+    'Futuristic Hero Background',
+    'Animated hero background for modern interfaces.',
+    FuturisticAnimatedHeroBackground,
+    '@/components/animation/futuristicAnimatedHeroBackground',
+    'background',
+    {
+      tags: ['transition', 'color', 'background'],
+      difficulty: 'Easy',
+      duration: '0.3s',
+      popularity: 95
+    }
+  )
+];
+
+const cardAnimations: AnimationItem[] = [
+  createAnimationItem(
+    'animated-card',
+    'Animated Card',
+    'A card with smooth hover and focus animations',
+    AnimatedCard,
+    '@/components/animation/card/animated-card',
+    'card',
+    {
+      tags: ['card', 'hover', 'focus'],
+      difficulty: 'beginner',
+      duration: '0.3s',
+      popularity: 95
+    }
+  ),
+  createAnimationItem(
+    'futuristic-card',
+    'Futuristic Game Card',
+    'A futuristic card with advanced hover effects',
+    FuturisticGameCard,
+    '@/components/animation/card/futuristic-game-card',
+    'card',
+    {
+      tags: ['card', 'game', 'futuristic'],
+      difficulty: 'intermediate',
+      duration: '0.5s',
+      popularity: 92
+    }
+  ),
+  createAnimationItem(
+    'animated-bright-border-card',
+    'Animated Bright Border Card',
+    'Animated border with bright color',
+    AnimatedBrightBorderCard,
+    '@/components/animation/card/animated-bright-border-card',
+    'card',
+    {
+      tags: ['attention', 'bounce', 'motion'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 21
+    }
+  ),
+  createAnimationItem(
+    'shine-card',
+    'Shine Card',
+    'Bouncing motion',
+    ShineCard,
+    '@/components/animation/card/shine-card',
+    'card',
+    {
+      tags: ['attention', 'bounce', 'motion'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 22
+    }
+  ),
+  createAnimationItem(
+    'animated-border-card',
+    'Animated Border Card',
+    'Hover to See me',
+    AnimatedBorderCard,
+    '@/components/animation/card/animated-border-card',
+    'card',
+    {
+      tags: ['attention', 'bounce', 'motion'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 23
+    }
+  ),
+  createAnimationItem(
+    'star-border-card',
+    'Star Border Card',
+    'Bouncing motion',
+    StarCard,
+    '@/components/animation/card/star-card',
+    'card',
+    {
+      tags: ['attention', 'bounce', 'motion'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 87
+    }
+  ),
+  createAnimationItem(
+    'star-border-card-1',
+    'Star Border Card 1',
+    'Card with animated star border',
+    StarCardBorder,
+    '@/components/animation/card/star-card-border',
+    'card',
+    {
+      tags: ['attention', 'star', 'border', 'motion'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 87
+    }
+  ),
+  createAnimationItem(
+    'animated-border-card-1',
+    'Animated Border Card 1',
+    'Bouncing motion',
+    AnimatedBorderCard1,
+    '@/components/animation/card/animated-border-card-1',
+    'card',
+    {
+      tags: ['attention', 'bounce', 'motion'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 87
+    }
+  ),
+  createAnimationItem(
+    'task-animation-card',
+    'Task Animation',
+    'Interactive task animation',
+    TaskAnimation,
+    '@/components/animation/task-animation',
+    'card',
+    {
+      tags: ['interactive', 'task', 'motion'],
+      difficulty: 'Medium',
+      duration: '1s',
+      popularity: 87
+    }
+  ),
+  createAnimationItem(
+    'hover-change',
+    'Hover Change',
+    'Hover me that i changed!',
+    SuperAnimatedHeroCard,
+    '@/components/animation/super-animated-hero-card',
+    'card',
+    {
+      tags: ['animation', 'hover'],
+      difficulty: 'Medium',
+      duration: '0.82s',
+      popularity: 46
+    }
+  ),
+  createAnimationItem(
+    'shake',
+    'Shake',
+    'shake effect, Hover Me !!!',
+    ShakeCard,
+    '@/components/animation/card/shake-card',
+    'card',
+    {
+      tags: ['attention', 'pulse', 'heartbeat'],
+      difficulty: 'Medium',
+      duration: '1.5s',
+      popularity: 47
+    }
+  )
+];
+
+// Create categories
+export const animationCategories: AnimationCategory[] = [
+  createAnimationCategory(
+    'loading',
+    'Loading',
+    RotateCw,
+    'from-yellow-500 to-orange-500',
+    'Loading and progress animations',
+    loadingAnimations
+  ),
+  createAnimationCategory(
+    'background',
+    'Background',
+    Zap,
+    'from-purple-500 to-pink-500',
+    'Background animations',
+    backgroundAnimations
+  ),
+  createAnimationCategory(
+    'card',
+    'Card',
+    Sparkles,
+    'from-red-500 to-pink-500',
+    'Eye-catching attention animations',
+    cardAnimations
+  )
+];
+
+// Utility function to get all animations
+export const getAllAnimations = (): AnimationItem[] => {
+  return animationCategories.flatMap(category => category.animations);
+};
+
+// Utility function to get animation by ID
+export const getAnimationById = (id: string): AnimationItem | undefined => {
+  return getAllAnimations().find(anim => anim.id === id);
+};
+
+// Utility function to get animations by category
+export const getAnimationsByCategory = (categoryId: string): AnimationItem[] => {
+  const category = animationCategories.find(cat => cat.id === categoryId);
+  return category ? category.animations : [];
+};

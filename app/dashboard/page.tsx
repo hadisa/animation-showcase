@@ -1,26 +1,42 @@
 "use client";
 
-import { AdvancedSearch } from "@/components/advanced-search";
 import BackgroundEffects from "@/components/background-effects";
 import { Navigation } from "@/components/navigation";
-import { AnimationCardRenderer } from "@/components/sections/dashboard/animation-card-renderer";
 import { animationCategories } from "@/components/sections/dashboard/animation-data";
-import CategoryFilter from "@/components/sections/dashboard/category-filter";
-import CategoryGrid from "@/components/sections/dashboard/category-grid";
-import HeaderSection from "@/components/sections/dashboard/header-section-dash";
 import NoResultsSection from "@/components/sections/dashboard/no-results-section";
 import { Badge } from "@/components/ui/badge";
 import { useAnimationActions } from "@/hooks/use-animation-actions";
 import { useAnimationFilters } from "@/hooks/use-animation-filters";
-import { Filter } from "lucide-react";
-import { useState } from "react";
+import { Filter, Loader } from "lucide-react";
+import dynamic from 'next/dynamic';
+import { useState, useEffect } from "react";
+
+// Dynamically import components
+const AdvancedSearch = dynamic(
+  () => import("@/components/advanced-search").then(mod => mod.AdvancedSearch),
+  { ssr: false }
+);
+
+const CategoryFilter = dynamic(
+  () => import("@/components/sections/dashboard/category-filter").then(mod => mod.default),
+  { ssr: false }
+);
+
+const HeaderSection = dynamic(
+  () => import("@/components/sections/dashboard/header-section-dash").then(mod => mod.default),
+  { ssr: false }
+);
+
+const AnimationCardRenderer = dynamic(
+  () => import("@/components/sections/dashboard/animation-card-renderer").then(mod => mod.AnimationCardRenderer),
+  { ssr: false }
+);
 
 export default function DashboardPage() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [sortBy, setSortBy] = useState<"name" | "popularity" | "difficulty">(
-    "popularity"
-  );
+  const [sortBy, setSortBy] = useState<"name" | "popularity" | "difficulty">("popularity");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  const [isLoading, setIsLoading] = useState(true);
 
   const {
     searchQuery,
@@ -44,6 +60,28 @@ export default function DashboardPage() {
     toggleFavorite,
     copyToClipboard,
   } = useAnimationActions();
+
+  // Simulate loading time for dynamic imports
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // Adjust this time based on your actual loading needs
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background/95 relative overflow-hidden flex items-center justify-center">
+        <BackgroundEffects />
+        <div className="relative z-50 flex flex-col items-center justify-center gap-4">
+          <Loader className="w-8 h-8 animate-spin text-primary" />
+          <p className="text-lg font-medium text-foreground/80">Loading animations...</p>
+          <p className="text-sm text-muted-foreground">Preparing your dashboard</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background/95 relative overflow-hidden">
@@ -84,18 +122,8 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Category Grid Section */}
-          {/* {selectedCategory === "all" && (
-            <div className="bg-background/50 backdrop-blur-md rounded-2xl p-6 mb-8 transition-all ">
-              <CategoryGrid
-                animationCategories={animationCategories}
-                setSelectedCategory={setSelectedCategory}
-              />
-            </div>
-          )} */}
-
           {/* Animations Grid Section */}
-          <div className="bg-background/50 backdrop-blur-md rounded-2xl p-6transition-all ">
+          <div className="bg-background/50 backdrop-blur-md rounded-2xl p-6 transition-all">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
               <div>
                 <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">

@@ -66,7 +66,7 @@ export default function DocsPage() {
                 </Link>
               </Button>
               <Button variant="outline" className="w-full justify-start bg-transparent" asChild>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/hadisa/animation-showcase" target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="w-4 h-4 mr-2" />
                   GitHub Repository
                 </a>
